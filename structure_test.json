@@ -1,0 +1,188 @@
+{
+  "plsql": [
+    {
+        "IMP_DATA_MAP.imp_data_map_id": {
+            "fromClause": "imp_data_map",
+            "sqlColName": "sql_text",
+            "whereClause": "length(sql_text) > 0"
+        }
+    },
+    {
+        "IMP_DATA_TYPE.imp_data_type_id": {
+            "fromClause": "imp_data_type",
+            "sqlColName": "sql_text",
+            "whereClause": null
+        }
+    },
+    {
+        "IMP_DATA_ENTITY.imp_entity_id": {
+            "fromClause": "imp_entity",
+            "sqlColName": "sql_text",
+            "whereClause": null
+        }
+    },
+    {
+        "IMP_SPEC.imp_spec_id": {
+            "fromClause": "imp_spec",
+            "sqlColName": "external_proc",
+            "whereClause": null
+        }
+    },
+    {
+        "RULE.rule_id": {
+            "fromClause": "rule",
+            "sqlColName": "sql_text",
+            "whereClause": "is_enabled = 1"
+        }
+    },
+    {
+        "RULE_CLASS_PARAM_VAL.v.rule_class_param_value_id": {
+            "fromClause": "rule_class_param_value v join rule r on (r.rule_id = v.rule_id)",
+            "sqlColName": "v.value_clob",
+            "whereClause": "r.is_enabled = 1"
+        }
+    },
+    {
+        "WF_STEP.s.wf_step_id": {
+            "fromClause": "wf_step s join wf_workflow w on (w.wf_workflow_id = s.wf_workflow_id)",
+            "sqlColName": "s.plsql_block",
+            "whereClause": "w.wf_state_id not in (4,5)"
+        }
+    },
+    {
+        "WF_TEMPLATE_STEP.wf_template_step_id": {
+            "fromClause": "wf_template_step",
+            "sqlColName": "plsql_block",
+            "whereClause": null
+        }
+    }
+  ],
+  "sql": [
+    {
+        "FIELD_DEF_SQL.config_field_id": {
+            "fromClause": "config_field",
+            "sqlColName": "default_value_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "FIELD_SQL_QUERY.config_field_id": {
+            "fromClause": "config_field",
+            "sqlColName": "sql_text",
+            "whereClause": "config_field_name <> 'XITOR_CLASS_ID'"
+        }
+    },
+    {
+        "EXCEL_ORCH_DEF_SQL.excel_orch_mapping_id": {
+            "fromClause": "excel_orch_mapping",
+            "sqlColName": "default_value_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "EXCEL_ORCH_SQL_QUERY.excel_orch_mapping_id": {
+            "fromClause": "excel_orch_mapping",
+            "sqlColName": "sql_query",
+            "whereClause": null
+        }
+    },
+    {
+        "PAGE_FIELD78.grid_page_field_id": {
+            "fromClause": "grid_page_field",
+            "sqlColName": "cell_renderer_param1",
+            "whereClause": "cell_renderer_id = 78"
+        }
+    },
+    {
+        "IMP_ENTITY_REQ_FIELD.imp_entity_req_field_id": {
+            "fromClause": "imp_entity_req_field",
+            "sqlColName": "sql_text",
+            "whereClause": "length(sql_text) > 0"
+        }
+    },
+    {
+        "NOTIF_TRACKOR.notif_id": {
+            "fromClause": "notif",
+            "sqlColName": "trackor_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "NOTIF_USER.notif_id": {
+            "fromClause": "notif",
+            "sqlColName": "user_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "RPT_LOOKUP.report_lookup_id": {
+            "fromClause": "report_lookup",
+            "sqlColName": "lookup_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "RPT_SQL.report_sql_id": {
+            "fromClause": "report_sql",
+            "sqlColName": "sql_text",
+            "whereClause": null
+        }
+    },
+    {
+        "RULE_CLASS_PARAM.rule_class_param_id": {
+            "fromClause": "rule_class_param",
+            "sqlColName": "sql_text",
+            "whereClause": null
+        }
+    },
+    {
+        "RULE_TYPE.rule_type_id": {
+            "fromClause": "rule_type",
+            "sqlColName": "template_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "TM_SETUP.tm_setup_id": {
+            "fromClause": "tm_setup",
+            "sqlColName": "search_sql",
+            "whereClause": "length(search_sql) > 0"
+        }
+    },
+    {
+        "XITOR_REQ_FIELD.xitor_req_field_id": {
+            "fromClause": "xitor_req_field",
+            "sqlColName": "default_value_sql",
+            "whereClause": null
+        }
+    },
+    {
+        "IMP_DATA_TYPE_PARAM.imp_data_type_param_id": {
+            "fromClause": "imp_data_type_param",
+            "sqlColName": "sql_text",
+            "whereClause": null
+        }
+    },
+    {
+        "IMP_DATA_MAP.imp_data_map_id": {
+            "fromClause": "imp_data_map",
+            "sqlColName": "sql_text",
+            "whereClause": "length(sql_text) > 0"
+        }
+    },
+    {
+        "IMP_ENTITY.imp_entity_id": {
+            "fromClause": "imp_entity",
+            "sqlColName": "sql_text",
+            "whereClause": "dbms_lob.getlength(sql_text) > 0"
+        }
+    },
+    {
+        "RULE_CLASS_PARAM_VAL.v.rule_class_param_value_id": {
+            "fromClause": "rule_class_param_value v join rule r on (r.rule_id = v.rule_id)",
+            "sqlColName": "v.value_clob",
+            "whereClause": "r.is_enabled = 1"
+        }
+    }
+  ]
+}

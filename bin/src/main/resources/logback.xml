@@ -1,0 +1,61 @@
+<configuration scan="true">
+    <appender name="FILE_DATA" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${schema}_data.log</file>
+        <append>true</append>
+        <filter class="com.onevizion.checksql.CheckSqlLogFilter">
+            <marker>DATA_SQL</marker>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/${schema}_data.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/${schema}_info.log</file>
+        <append>true</append>
+        <filter class="com.onevizion.checksql.CheckSqlLogFilter">
+            <marker>INFO_SQL</marker>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/${schema}_info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+            <cleanHistoryOnStart>true</cleanHistoryOnStart>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="com.onevizion.checksql.CheckSqlLogFilter">
+            <marker>INFO_SQL</marker>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%msg %n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="FILE_DATA" />
+        <appender-ref ref="FILE_INFO" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <logger name="com.onevizion" level="DEBUG" />
+</configuration>

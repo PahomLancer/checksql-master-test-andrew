@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<root>
+    <remote_owner>username/password@host:port:SID</remote_owner>
+    <remote_user>username/password@host:port:SID</remote_user>
+    
+    <!--optional config
+    <local_owner>username/password@host:port:SID</local_owner>
+    <local_user>username/password@host:port:SID</local_user>
+    <sql>
+        <enabled>true</enabled>
+        <disable-tables>config_field,excel_orch_mapping,grid_page_field,imp_entity_req_field,notif,report_lookup,report_sql,rule_class_param,rule_type,tm_setup,xitor_req_field,imp_data_type_param,imp_data_map,imp_entity,rule_class_param_value</disable-tables>
+    </sql>
+    <pl_sql>
+        <enabled>true</enabled>
+        <disable-tables>imp_data_map,imp_data_type,imp_entity,imp_spec,rule,rule_class_param_value,wf_step,wf_template_step</disable-tables>
+    </pl_sql>
+    -->
+</root>
