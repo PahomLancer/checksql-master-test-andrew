@@ -101,7 +101,7 @@ public class CheckSqlExecutor {
 
         configAppSettings(config);
 
-        if (config.isEnabledSql()) {
+        /*if (config.isEnabledSql()) {
             try {
                 testSelectQueries(config);
             } catch (Exception e) {
@@ -110,8 +110,14 @@ public class CheckSqlExecutor {
             }
         } else {
             logger.info(INFO_MARKER, "Testing of SELECT queries is disabled");
+        }*/
+        try {
+            testSelectQueries(config);
+        } catch (Exception e) {
+            logger.info(INFO_MARKER, "SQL Checker is failed with error\r\n{}", e);
+            return;
         }
-        if (config.isEnabledPlSql()) {
+        /*if (config.isEnabledPlSql()) {
             try {
                 testPlsqlBlocks(config);
             } catch (Exception e) {
@@ -120,6 +126,12 @@ public class CheckSqlExecutor {
             }
         } else {
             logger.info(INFO_MARKER, "Testing of PLSQL blocks is disabled");
+        }*/
+        try {
+            testPlsqlBlocks(config);
+        } catch (Exception e) {
+            logger.info(INFO_MARKER, "SQL Checker is failed with error\r\n{}", e);
+            return;
         }
         logSqlErrors();
         logger.info(INFO_MARKER, "SQL Checker is completed");
@@ -232,11 +244,11 @@ public class CheckSqlExecutor {
 
         boolean dropView = false;
         for (TableNode sel : selectQuery.values()) {
-            if (config.isSkippedSqlTable(sel.getTableName())) {
+            /*if (config.isSkippedSqlTable(sel.getTableName())) {
                 logger.info(INFO_MARKER, "Phase 1/2 Table {}/{}: Table {} is skipped", sel.getOrdNum(), tableNums,
                         sel.getTableName());
                 continue;
-            }
+            }*/
 
             TableValue<SqlRowSet> entitySqls = getSqlRowSetData(sel);
             if (entitySqls.hasError()) {
@@ -466,10 +478,10 @@ public class CheckSqlExecutor {
         boolean dropProc = false;
         int tableNums = /*plsqlBlock*/selectQuery.values().size();
         for (TableNode plsql : /*plsqlBlock*/selectQuery.values()) {
-            if (config.isSkippedPlsqlTable(plsql.getTableName())) {
+            /*if (config.isSkippedPlsqlTable(plsql.getTableName())) {
                 logger.info(INFO_MARKER, "Phase 2/2 Table {}/{} is skipped", plsql.getOrdNum(), tableNums);
                 continue;
-            }
+            }*/
 
             TableValue<SqlRowSet> entitySqls = getSqlRowSetData(plsql);
             if (entitySqls.hasError()) {

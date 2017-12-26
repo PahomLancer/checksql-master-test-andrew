@@ -45,7 +45,7 @@ public class CheckSqlApp {
         if (args.length > 0) {
             doc = XmlConfUtils.getDoc(args[0]);
         } else {
-            doc = XmlConfUtils.getDoc("check-sql.xml");
+            doc = XmlConfUtils.getDoc("check-sql-test.xml");
         }
         Configuration configuration = ConfigurationUtils.loadConfiguration(doc);
 
@@ -56,7 +56,8 @@ public class CheckSqlApp {
         configDataSource((PoolDataSource) ctx.getBean("owner1DataSource"), owner1DbUrlParts, "check-sql_owner1", false,
                 true);
 
-        String[] test1DbUrlParts = parseDbCnnStr(configuration.getRemoteUser());
+        //String[] test1DbUrlParts = parseDbCnnStr(configuration.getRemoteUser());
+        String[] test1DbUrlParts = parseDbCnnStr(configuration.getRemoteOwner());
         configuration.setTest1DbSchema(test1DbUrlParts[0]);
         configDataSource((PoolDataSource) ctx.getBean("test1DataSource"), test1DbUrlParts, "check-sql_test1", false,
                 false);
@@ -67,7 +68,8 @@ public class CheckSqlApp {
             configDataSource((PoolDataSource) ctx.getBean("owner2DataSource"), owner2DbUrlParts, "check-sql_owner2",
                     true, true);
 
-            String[] test2DbUrlParts = parseDbCnnStr(configuration.getLocalUser());
+            //String[] test2DbUrlParts = parseDbCnnStr(configuration.getLocalUser());
+            String[] test2DbUrlParts = parseDbCnnStr(configuration.getLocalOwner());
             configuration.setTest2DbSchema(test2DbUrlParts[0]);
             configDataSource((PoolDataSource) ctx.getBean("test2DataSource"), test2DbUrlParts, "check-sql_test2", true,
                     false);
@@ -126,22 +128,25 @@ public class CheckSqlApp {
     }
 
     private void checkArgsAndThrow(Configuration configuration) throws IllegalArgumentException {
-        if (StringUtils.isBlank(configuration.getRemoteOwner()) || StringUtils.isBlank(configuration.getRemoteUser())) {
+        /*if (StringUtils.isBlank(configuration.getRemoteOwner()) || StringUtils.isBlank(configuration.getRemoteUser())) {
             throw new IllegalArgumentException("both remote_owner and remote_user should set");
+        }*/
+        if (StringUtils.isBlank(configuration.getRemoteOwner())) {
+            throw new IllegalArgumentException("remote_owner should be set");
         }
 
-        if ((StringUtils.isNotBlank(configuration.getLocalOwner()) && StringUtils.isBlank(configuration.getLocalUser()))
+        /*if ((StringUtils.isNotBlank(configuration.getLocalOwner()) && StringUtils.isBlank(configuration.getLocalUser()))
                 || (StringUtils.isBlank(configuration.getLocalOwner())
                         && StringUtils.isNotBlank(configuration.getLocalUser()))) {
             throw new IllegalArgumentException("both local_owner and local_user should set or nothing");
-        }
+        }*/
 
         parseDbCnnStr(configuration.getRemoteOwner());
-        parseDbCnnStr(configuration.getRemoteUser());
+        //parseDbCnnStr(configuration.getRemoteUser());
 
         if (configuration.isUseSecondTest()) {
             parseDbCnnStr(configuration.getLocalOwner());
-            parseDbCnnStr(configuration.getLocalUser());
+            //parseDbCnnStr(configuration.getLocalUser());
         }
     }
 

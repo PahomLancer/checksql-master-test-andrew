@@ -26,10 +26,10 @@ public class ConfigurationUtils {
         XPathExpression<Element> xpath = XPathFactory.instance().compile("root", Filters.element());
         for (Element elem : xpath.evaluate(doc)) {
             configuration.setRemoteOwner(elem.getChildText("remote_owner"));
-            configuration.setRemoteUser(elem.getChildText("remote_user"));
+            //configuration.setRemoteUser(elem.getChildText("remote_user"));
             configuration.setLocalOwner(elem.getChildText("local_owner"));
-            configuration.setLocalUser(elem.getChildText("local_user"));
-            if (elem.getChild("sql") != null) {
+            //configuration.setLocalUser(elem.getChildText("local_user"));
+            /*if (elem.getChild("sql") != null) {
             	configuration.setEnabledSql(Boolean.parseBoolean(elem.getChild("sql").getChildText("enabled")));
                 String skipTablesSql = elem.getChild("sql").getChildText("disable-tables");
                 if (StringUtils.isNotBlank(skipTablesSql)) {
@@ -37,18 +37,18 @@ public class ConfigurationUtils {
                 }
                 configuration.setSkipTablesSql(skipTablesSqlList);
 
-            }
-            if (elem.getChild("pl_sql") != null) {
+            }*/
+            /*if (elem.getChild("pl_sql") != null) {
             	configuration.setEnabledPlSql(Boolean.parseBoolean(elem.getChild("pl_sql").getChildText("enabled")));
             	String skipTablesPlSql = elem.getChild("pl_sql").getChildText("disable-tables");
                 if (StringUtils.isNotBlank(skipTablesPlSql)) {
                     skipTablesPlSqlList = Arrays.asList(skipTablesPlSql.split(","));
                 }
                 configuration.setSkipTablesPlSql(skipTablesPlSqlList);
-            }
+            }*/
 
             if (StringUtils.isNotBlank(configuration.getLocalOwner())
-                    && StringUtils.isNotBlank(configuration.getLocalUser())) {
+                    /*&& StringUtils.isNotBlank(configuration.getLocalUser())*/) {
                 configuration.setUseSecondTest(true);
             }
         }
