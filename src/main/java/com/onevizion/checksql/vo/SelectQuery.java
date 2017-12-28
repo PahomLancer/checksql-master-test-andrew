@@ -24,7 +24,7 @@ public class SelectQuery{
         try {
             JSONObject object = (JSONObject) parser.parse(
                     new FileReader(FILENAME));
-            JSONArray messages = (JSONArray) object.get("sql");
+            JSONArray messages = (JSONArray) object.get("tables");
             //System.out.println("Messages: " + messages);
             for (int i = 0; i < messages.size(); i = i + 1) {
                 JSONObject tempobject = (JSONObject) messages.get(i);

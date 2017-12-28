@@ -14,9 +14,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.onevizion.checksql.exception.AppStartupException;
 import com.onevizion.checksql.vo.Configuration;
+import com.onevizion.checksql.vo.TableNode;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
 
 import oracle.jdbc.driver.OracleConnection;
 import oracle.ucp.jdbc.PoolDataSource;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class CheckSqlApp {
 
@@ -25,6 +36,8 @@ public class CheckSqlApp {
     private static final String DB_CNN_PROPS_ERROR_MESSAGE = "DB connection properties should be specified in following format: <username>/<password>@<host>:<port>:<SID>";
 
     private static final String JDBC_THIN_URL_PREFIX = "jdbc:oracle:thin:@";
+    
+    private List<TableNode> values = new ArrayList();
 
     /**
      * Main use cases:
@@ -40,12 +53,17 @@ public class CheckSqlApp {
      */
     public static void main(String[] args) {
         CheckSqlApp app = new CheckSqlApp();
-
-        Document doc;
+        
+        
+        
+        //Document doc;
+        String doc;
         if (args.length > 0) {
-            doc = XmlConfUtils.getDoc(args[0]);
+            //doc = XmlConfUtils.getDoc(args[0]);
+            doc = args[0];
         } else {
-            doc = XmlConfUtils.getDoc("check-sql-test.xml");
+            //doc = XmlConfUtils.getDoc("check-sql-test.xml");
+            doc = "structure_test.json";
         }
         Configuration configuration = ConfigurationUtils.loadConfiguration(doc);
 

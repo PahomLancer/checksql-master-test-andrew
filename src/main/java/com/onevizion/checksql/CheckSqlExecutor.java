@@ -26,7 +26,7 @@ import com.onevizion.checksql.exception.UnexpectedException;
 import com.onevizion.checksql.vo.AppSettings;
 import com.onevizion.checksql.vo.CheckSqlQuery;
 import com.onevizion.checksql.vo.Configuration;
-import com.onevizion.checksql.vo.PlsqlBlock;
+//import com.onevizion.checksql.vo.PlsqlBlock;
 import com.onevizion.checksql.vo.SelectQuery;
 import com.onevizion.checksql.vo.SqlError;
 import com.onevizion.checksql.vo.TableNode;
